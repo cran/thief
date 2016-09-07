@@ -1,0 +1,14 @@
+10f3b097ac7e90a3320b9e95d1fda645 *DESCRIPTION
+21f593c4e0f7b356006b333f2300ca9e *NAMESPACE
+fe75033728e0f53513a7b2c60d9fef86 *R/NHSdata.R
+8286351c16a226c23581913ffa5bd6d1 *R/combine.R
+8061b011fc4f5969fd528c6344574077 *R/plot.tsaggregates.R
+88e0c7fef4a2e19b6c7cb1b20701f854 *R/thief.R
+6e6a127f1a070ef459bfb30a4dc7a817 *R/tsaggregates.R
+58435cca9c0983b2031eef1bee9d77d0 *README.md
+0346cd4ddbe533d54ec9c09438246bb3 *data/AEdemand.rda
+3a81096432f963d5b8e18bfce4125ed7 *man/AEdemand.Rd
+c23d6722629b7acb602b662bf97b713a *man/plot.tsaggregates.Rd
+d2e5a1c50e1279db7e872c9b20870755 *man/reconcilethief.Rd
+5120f86f140778b5329f110b3b1fd542 *man/thief.Rd
+0eb2a92c4d6ff5012b557e95e4716322 *man/tsaggregates.Rd
