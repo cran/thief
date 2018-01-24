@@ -7,6 +7,7 @@
 #' @param align Indicates how the aggregates are to be aligned:
 #' either with the \code{start} of the series or the \code{end} of the series.
 #' For forecasting purposes, it should be set to \code{end}.
+#' @param aggregatelist User-selected list of aggregates to consider.
 #'
 #' @return A list of time series. The first element is the series `y`,
 #' followed by series with increasing levels of aggregation. The last
@@ -20,7 +21,8 @@
 #' @export
 
 
-tsaggregates <- function (y, m=frequency(y), align=c("end","start"))
+tsaggregates <- function (y, m=frequency(y), align=c("end","start"),
+                          aggregatelist=NULL)
 {
   align <- match.arg(align)
   n <- length(y)
@@ -32,6 +34,13 @@ tsaggregates <- function (y, m=frequency(y), align=c("end","start"))
   mout <- mout[mout <= n]
   if (length(mout) == 0L)
     stop("Series too short for aggregation")
+
+  # If user has specified aggregatelist, then consider only those aggregates
+  if (!is.null(aggregatelist))
+    mout <- mout[mout %in% aggregatelist]
+  if (length(mout) == 0L)
+    stop("No valid factors in aggregatelist argument")
+
   k <- length(mout)
   y.out <- vector("list",k)
   y.out[[1L]] <- y
@@ -45,7 +54,8 @@ tsaggregates <- function (y, m=frequency(y), align=c("end","start"))
       start <- 1L
     nk <- trunc(n/mout[i])
     tmp <- matrix(y[start - 1L + seq_len(mout[i]*nk)], ncol=nk)
-    y.out[[i]] <- ts(colSums(tmp), frequency=m/mout[i], start=tsp(y)[1] + (start-1)/m)
+    y.out[[i]] <- ts(colSums(tmp), frequency=m/mout[i],
+      start=tsp(y)[1] + (start-1)/m)
   }
   names(y.out) <- paste("Period", m/mout)
   # Give names to common periods
